@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Подтверждение почты</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
+</head>
+<body>
+    <div class="card">
+        <h1>Подтверди почту</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input name="username" placeholder="Логин" required>
+            <input name="code" placeholder="Код из письма" pattern="[0-9]{6}" maxlength="6" required>
+            <button>Подтвердить</button>
+        </form>
+        <a href="{% url 'login' %}">Войти</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
+</head>
+<body class="news-page">
+    <div class="profile">
+        <h1>Привет, {{ user.username }}!</h1>
+        <p>{{ user.email }}</p>
+        <form action="{% url 'search_news' %}">
+            <input name="title" value="{{ title }}" placeholder="Название новости">
+            <button>Найти</button>
+        </form>
+        <p>
+            <a href="{% url 'profile' %}">Все новости</a>
+        </p>
+        {% for item in tasks %}
+            {% include 'news_card.html' %}
+        {% endfor %}
+        <p>
+            <a href="{% url 'admin_panel' %}">Админ панель</a>
+        </p>
+    </div>
+</body>
+</html>

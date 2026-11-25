@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Нет доступа</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
+</head>
+<body>
+    <div class="card error-card">
+        <img class="error-meme" src="{% static 'images/not-admin.png' %}" alt="Удивлённый кот">
+        <h1>Братанчик, ты ещё не админ 😼</h1>
+        <p>Ты пока просто user.</p>
+        <a class="panel-link" href="{% url 'profile' %}">В профиль</a>
+    </div>
+</body>
+</html>

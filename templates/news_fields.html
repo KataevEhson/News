@@ -1,0 +1,8 @@
+<input name="title" value="{{ item.title }}" placeholder="Заголовок" maxlength="150" required>
+<textarea name="description" placeholder="Текст новости" required>{{ item.description }}</textarea>
+<select name="category" required>
+    <option value="{{ item.category_id }}">{{ item.category.name|default:'Выбери категорию' }}</option>
+    {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+    {% endfor %}
+</select>

@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Админ панель</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=4">
+</head>
+<body>
+    <div class="profile">
+        <h1>Админ панель</h1>
+        <a href="{% url 'profile' %}">В профиль</a>
+        <h2>Создать новость</h2>
+        <form method="post" action="{% url 'create_news' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% include 'news_fields.html' %}
+            <input type="file" name="image" accept="image/*" required>
+            <button>Создать</button>
+        </form>
+        {% for item in news %}
+            {% include 'news_card.html' %}
+            <form method="post" action="{% url 'update_news' item.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% include 'news_fields.html' %}
+                <p>Новая картинка (необязательно)</p>
+                <input type="file" name="image" accept="image/*">
+                <button>Сохранить</button>
+            </form>
+            <form method="post" action="{% url 'delete_news' item.id %}">
+                {% csrf_token %}
+                <button class="delete-button" onclick="return confirm('Удалить?')">Удалить</button>
+            </form>
+        {% endfor %}
+    </div>
+</body>
+</html>
